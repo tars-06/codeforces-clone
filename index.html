@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Codeforces IIT Kharagpur Students</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Codeforces IIT Kharagpur Students</h1>
+        <table>
+            <thead>
+                <tr>
+                    <th>Rank</th>
+                    <th>Username</th>
+                    <th>Rating</th>
+                </tr>
+            </thead>
+            <tbody id="student-list">
+                <!-- Student data will be dynamically populated here -->
+            </tbody>
+        </table>
+    </div>
+
+    <script>
+        async function fetchStudents() {
+            try {
+                const response = await fetch('http://localhost:3000/api/students'); // Replace with your backend API endpoint
+                const students = await response.json();
+                const studentList = document.getElementById('student-list');
+                let rank = 1;
+
+                students.forEach((student) => {
+                    const row = document.createElement('tr');
+                    row.innerHTML = `
+                        <td>${rank}</td>
+                        <td>${student.handle}</td>
+                        <td>${student.rating}</td>
+                    `;
+                    studentList.appendChild(row);
+                    rank++;
+                });
+            } catch (error) {
+                console.error(error);
+                alert('An error occurred while fetching student data.');
+            }
+        }
+
+        // Call the function to fetch and display student data on page load
+        fetchStudents();
+    </script>
+</body>
+</html>
