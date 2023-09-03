@@ -1,3 +1,1 @@
-either run the server.js using "node server.js" on your terminal, and the site will be hosted on localhost:3000
-
-or just view the site using live server of vscode using index.html
+run the server.js using "node server.js" on your terminal, and the site will be hosted on localhost:3000
